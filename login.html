@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+    /* CSS styles */
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+<div class="container">
+    <h2>Register</h2>
+    <form id="registerForm">
+        <label for="newUsername">New Username:</label>
+        <input type="text" id="newUsername" name="newUsername" required>
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+<script>
+    // Object to store username-password pairs
+    var users = {};
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the username and password values
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Check if the entered username exists and the password matches
+        if (users.hasOwnProperty(username) && users[username] === password) {
+            alert("Login successful!");
+            // Redirect to another page
+            window.location.href = "index.html"; // Change "dashboard.html" to the desired URL
+        } else {
+            alert("Invalid username or password. Please try again.");
+        }
+    });
+
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get the new username and password values
+        var newUsername = document.getElementById("newUsername").value;
+        var newPassword = document.getElementById("newPassword").value;
+
+        // Check if the username already exists
+        if (users.hasOwnProperty(newUsername)) {
+            alert("Username already exists. Please choose a different one.");
+            return;
+        }
+
+        // Store the new username-password pair
+        users[newUsername] = newPassword;
+        alert("Registration successful! You can now login with your new credentials.");
+    });
+</script>
+
+</body>
+</html>
